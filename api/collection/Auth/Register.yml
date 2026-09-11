@@ -1,0 +1,117 @@
+info:
+  name: Register
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{baseURL}}/api/register"
+  body:
+    type: json
+    data: |-
+      {
+        "name": "Carlos Eduardo Tolentino",
+        "email": "carloseduardotolentino@gmail.com",
+        "password": "CA1348@meme",
+        "password_confirmation": "CA1348@mee"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Sucess
+    description: Exemplo de sucesso da request.
+    request:
+      url: "{{baseURL}}/api/register"
+      method: POST
+      body:
+        type: json
+        data: |-
+          {
+            "name": "Carlos Eduardo Tolentino",
+            "email": "carloseduardotolentino@gmail.com",
+            "password": "CA1348@meme",
+            "password_confirmation": "CA1348@meme"
+          }
+    response:
+      status: 201
+      statusText: Created
+      headers:
+        - name: host
+          value: localhost:8000
+        - name: connection
+          value: close
+        - name: x-powered-by
+          value: PHP/8.5.0
+        - name: cache-control
+          value: no-cache, private
+        - name: date
+          value: Fri, 11 Sep 2026 04:21:25 GMT
+        - name: content-type
+          value: application/json
+        - name: access-control-allow-origin
+          value: "*"
+      body:
+        type: json
+        data: |-
+          {
+            "user": {
+              "name": "Carlos Eduardo Tolentino",
+              "email": "carloseduardotolentino@gmail.com",
+              "id": "01a08eb2-ea45-72dd-b505-fdec03ae4e3b",
+              "updated_at": "2026-09-11T04:21:25.000000Z",
+              "created_at": "2026-09-11T04:21:25.000000Z"
+            },
+            "token": "1|m2uL1zaFTyQygzXLt3mdPMmHzFbvgzO9URuL8EHB338d8c39"
+          }
+  - name: Body Inválido
+    request:
+      url: "{{baseURL}}/api/register"
+      method: POST
+      body:
+        type: json
+        data: |-
+          {
+            "name": "Carlos Eduardo Tolentino",
+            "email": "carloseduardotolentino@gmail.com",
+            "password": "CA1348@meme",
+            "password_confirmation": "CA1348@mee"
+          }
+    response:
+      status: 422
+      statusText: Unprocessable Entity
+      headers:
+        - name: host
+          value: localhost:8000
+        - name: connection
+          value: close
+        - name: x-powered-by
+          value: PHP/8.5.0
+        - name: cache-control
+          value: no-cache, private
+        - name: date
+          value: Fri, 11 Sep 2026 04:28:06 GMT
+        - name: content-type
+          value: application/json
+        - name: access-control-allow-origin
+          value: "*"
+      body:
+        type: json
+        data: |-
+          {
+            "message": "validation.unique (and 1 more error)",
+            "errors": {
+              "email": [
+                "validation.unique"
+              ],
+              "password": [
+                "validation.confirmed"
+              ]
+            }
+          }

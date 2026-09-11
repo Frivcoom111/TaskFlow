@@ -1,0 +1,8 @@
+name: development
+color: "#2E8A54"
+variables:
+  - name: baseURL
+    value: http://localhost:8000
+  - secret: true
+    name: token
+    description: ""

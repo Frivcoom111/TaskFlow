@@ -1,0 +1,44 @@
+info:
+  name: Logout
+  type: http
+  seq: 3
+
+http:
+  method: POST
+  url: "{{baseURL}}/api/logout"
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Sucess
+    description: Exemplo de sucesso da request.
+    request:
+      url: "{{baseURL}}/api/logout"
+      method: POST
+    response:
+      status: 204
+      statusText: No Content
+      headers:
+        - name: host
+          value: localhost:8000
+        - name: connection
+          value: close
+        - name: x-powered-by
+          value: PHP/8.5.0
+        - name: cache-control
+          value: no-cache, private
+        - name: date
+          value: Fri, 11 Sep 2026 04:26:15 GMT
+        - name: access-control-allow-origin
+          value: "*"
+      body:
+        type: text
+        data: ""
