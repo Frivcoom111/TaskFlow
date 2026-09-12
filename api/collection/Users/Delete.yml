@@ -1,0 +1,115 @@
+info:
+  name: Delete
+  type: http
+  seq: 4
+
+http:
+  method: DELETE
+  url: "{{baseURL}}/api/users/:user"
+  params:
+    - name: user
+      value: 01a0939e-5f12-704a-b17f-3ffda3b2e099
+      type: path
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Unauthorized
+    request:
+      url: "{{baseURL}}/api/users/:user"
+      method: DELETE
+      params:
+        - name: user
+          value: 01a0939e-5ef3-7254-9a3e-f132b89b745d
+          type: path
+    response:
+      status: 401
+      statusText: Unauthorized
+      headers:
+        - name: host
+          value: localhost:8000
+        - name: connection
+          value: close
+        - name: x-powered-by
+          value: PHP/8.5.0
+        - name: cache-control
+          value: no-cache, private
+        - name: date
+          value: Sat, 12 Sep 2026 03:47:34 GMT
+        - name: content-type
+          value: application/json
+        - name: access-control-allow-origin
+          value: "*"
+      body:
+        type: json
+        data: |-
+          {
+            "message": "Unauthenticated."
+          }
+  - name: Not Found
+    request:
+      url: "{{baseURL}}/api/users/:user"
+      method: DELETE
+      params:
+        - name: user
+          value: 01a0939e-5ef3-7254-9a3e-f132b89b745d
+          type: path
+    response:
+      status: 404
+      statusText: Not Found
+      headers:
+        - name: host
+          value: localhost:8000
+        - name: connection
+          value: close
+        - name: x-powered-by
+          value: PHP/8.5.0
+        - name: cache-control
+          value: no-cache, private
+        - name: date
+          value: Sat, 12 Sep 2026 03:52:16 GMT
+        - name: content-type
+          value: application/json
+        - name: access-control-allow-origin
+          value: "*"
+      body:
+        type: json
+        data: |-
+          {
+            "message": "No query results for model [App\\Models\\User] 01a0939e-5ef3-7254-9a3e-f132b89b745d"
+          }
+  - name: Sucess
+    request:
+      url: "{{baseURL}}/api/users/:user"
+      method: DELETE
+      params:
+        - name: user
+          value: 01a0939e-5f12-704a-b17f-3ffda3b2e099
+          type: path
+    response:
+      status: 204
+      statusText: No Content
+      headers:
+        - name: host
+          value: localhost:8000
+        - name: connection
+          value: close
+        - name: x-powered-by
+          value: PHP/8.5.0
+        - name: cache-control
+          value: no-cache, private
+        - name: date
+          value: Sat, 12 Sep 2026 03:52:56 GMT
+        - name: access-control-allow-origin
+          value: "*"
+      body:
+        type: text
+        data: ""

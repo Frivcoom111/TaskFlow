@@ -13,7 +13,7 @@ http:
         "name": "Carlos Eduardo Tolentino",
         "email": "carloseduardotolentino@gmail.com",
         "password": "CA1348@meme",
-        "password_confirmation": "CA1348@mee"
+        "password_confirmation": "CA1348@meme"
       }
   auth: inherit
 

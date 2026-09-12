@@ -1,0 +1,171 @@
+info:
+  name: Update
+  type: http
+  seq: 3
+
+http:
+  method: PATCH
+  url: "{{baseURL}}/api/users/:user"
+  params:
+    - name: user
+      value: 01a0939e-5ef3-7254-9a3e-f132b89b745d
+      type: path
+  body:
+    type: json
+    data: |-
+      {
+        "name": "",
+        "email": "",
+        "password": "",
+        "password_confirmation": ""
+      }
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Unauthorized
+    request:
+      url: "{{baseURL}}/api/users/:user"
+      method: PATCH
+      params:
+        - name: user
+          value: 01a0939e-5ef3-7254-9a3e-f132b89b745d
+          type: path
+      body:
+        type: json
+        data: |-
+          {
+            "name": "teste"
+          }
+    response:
+      status: 401
+      statusText: Unauthorized
+      headers:
+        - name: host
+          value: localhost:8000
+        - name: connection
+          value: close
+        - name: x-powered-by
+          value: PHP/8.5.0
+        - name: cache-control
+          value: no-cache, private
+        - name: date
+          value: Sat, 12 Sep 2026 03:42:39 GMT
+        - name: content-type
+          value: application/json
+        - name: access-control-allow-origin
+          value: "*"
+      body:
+        type: json
+        data: |-
+          {
+            "message": "Unauthenticated."
+          }
+  - name: Sucess
+    request:
+      url: "{{baseURL}}/api/users/:user"
+      method: PATCH
+      params:
+        - name: user
+          value: 01a0939e-5ef3-7254-9a3e-f132b89b745d
+          type: path
+      body:
+        type: json
+        data: |-
+          {
+            "name": "teste"
+          }
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: host
+          value: localhost:8000
+        - name: connection
+          value: close
+        - name: x-powered-by
+          value: PHP/8.5.0
+        - name: cache-control
+          value: no-cache, private
+        - name: date
+          value: Sat, 12 Sep 2026 03:42:59 GMT
+        - name: content-type
+          value: application/json
+        - name: access-control-allow-origin
+          value: "*"
+      body:
+        type: json
+        data: |-
+          {
+            "user": {
+              "id": "01a0939e-5ef3-7254-9a3e-f132b89b745d",
+              "name": "teste",
+              "email": "maicon04@example.net",
+              "is_admin": false,
+              "created_at": "2026-09-12T03:17:04.000000Z",
+              "updated_at": "2026-09-12T03:42:59.000000Z"
+            }
+          }
+  - name: Unprocessable Entity
+    request:
+      url: "{{baseURL}}/api/users/:user"
+      method: PATCH
+      params:
+        - name: user
+          value: 01a0939e-5ef3-7254-9a3e-f132b89b745d
+          type: path
+      body:
+        type: json
+        data: |-
+          {
+            "name": "",
+            "email": "",
+            "password": "",
+            "password_confirmation": ""
+          }
+    response:
+      status: 422
+      statusText: Unprocessable Entity
+      headers:
+        - name: host
+          value: localhost:8000
+        - name: connection
+          value: close
+        - name: x-powered-by
+          value: PHP/8.5.0
+        - name: cache-control
+          value: no-cache, private
+        - name: date
+          value: Sat, 12 Sep 2026 03:44:47 GMT
+        - name: content-type
+          value: application/json
+        - name: access-control-allow-origin
+          value: "*"
+      body:
+        type: json
+        data: |-
+          {
+            "message": "validation.string (and 5 more errors)",
+            "errors": {
+              "name": [
+                "validation.string",
+                "validation.min.string"
+              ],
+              "email": [
+                "validation.string",
+                "validation.email"
+              ],
+              "password": [
+                "validation.string",
+                "validation.min.string"
+              ]
+            }
+          }
