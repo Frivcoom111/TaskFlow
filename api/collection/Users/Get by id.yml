@@ -8,7 +8,7 @@ http:
   url: "{{baseURL}}/api/users/:user"
   params:
     - name: user
-      value: 01a0939e-5ef3-7254-9a3e-f132b89b745d
+      value: 01a0f4a7-5152-70e9-9c13-16ffe2bcf9b8
       type: path
   auth:
     type: bearer
